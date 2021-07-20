@@ -19,8 +19,10 @@ func (handler *CoreDNSMySql) findRecord(zone string, name string, types ...strin
 	sqlQuery := fmt.Sprintf("SELECT name, zone, ttl, record_type, content FROM %s WHERE zone = ? AND name = ? AND record_type IN ('%s')",
 		handler.tableName,
 		strings.Join(types, "','"))
+	fmt.Printf("Query SQL:'%s' \n",sqlQuery)
 	result, err := db.Query(sqlQuery, zone, query)
 	if err != nil {
+		fmt.Printf("Query SQL:error \n")
 		return nil, err
 	}
 
