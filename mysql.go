@@ -20,6 +20,8 @@ func (handler *CoreDNSMySql) findRecord(zone string, name string, types ...strin
 		handler.tableName,
 		strings.Join(types, "','"))
 	fmt.Printf("Query SQL:'%s' \n",sqlQuery)
+        fmt.Printf("Query SQL tableName:'%s' \n",handler.tableName)
+        fmt.Printf("Query SQL types:'%s' \n",strings.Join(types, "','"))
 	result, err := db.Query(sqlQuery, zone, query)
 	if err != nil {
 		fmt.Printf("Query SQL:error \n")
