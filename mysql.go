@@ -22,11 +22,14 @@ func (handler *CoreDNSMySql) findRecord(zone string, name string, types ...strin
 	fmt.Printf("Query SQL:'%s' \n",sqlQuery)
         fmt.Printf("Query SQL tableName:'%s' \n",handler.tableName)
         fmt.Printf("Query SQL types:'%s' \n",strings.Join(types, "','"))
+        fmt.Printf("Query SQL zone:'%s' \n",zone)
+        fmt.Printf("Query SQL query:'%s' \n",query)
 	result, err := db.Query(sqlQuery, zone, query)
 	if err != nil {
 		fmt.Printf("Query SQL:error \n")
 		return nil, err
 	}
+       
 
 	var recordName string
 	var recordZone string
